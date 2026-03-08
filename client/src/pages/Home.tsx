@@ -21,32 +21,31 @@ export default function Home() {
 
   const renderPage = () => {
     switch (activeSection) {
-      case 'me':     return <Hero />;
-      case 'work':   return <Projects />;
+      case 'me': return <Hero />;
+      case 'work': return <Projects />;
       case 'builds': return <Builds />;
-      case 'stack':  return <Stack />;
+      case 'stack': return <Stack />;
       case 'contact': return <Contact />;
-      default:       return <Hero />;
+      default: return <Hero />;
     }
   };
 
   return (
     <div
-      className="min-h-screen text-[#1a1a1a] overflow-hidden"
-      style={{ background: '#f8f7f4', fontFamily: "'DM Sans', sans-serif" }}
+      className="min-h-screen text-[#1a1a1a] overflow-hidden bg-[#f8f7f4]"
     >
-      {/* Logo — top left, wiggle on hover */}
+      {/* Logo — top left */}
       <Logo onClick={() => setActiveSection('me')} src={LOGO_SRC} />
 
-      {/* Centered pill nav */}
+      {/* Navigation */}
       <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
 
       {/* Page content */}
       <main
         className="fixed inset-0 overflow-y-auto"
-        style={{ paddingTop: 64, paddingBottom: 64 }}
+        style={{ paddingTop: 80, paddingBottom: 80 }}
       >
-        <div className="min-h-full px-[72px] py-14 max-w-[1240px] mx-auto">
+        <div className="min-h-full px-8 md:px-12 py-10 w-full">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSection}
@@ -54,6 +53,7 @@ export default function Home() {
               initial="initial"
               animate="animate"
               exit="exit"
+              className="w-full"
             >
               {renderPage()}
             </motion.div>

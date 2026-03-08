@@ -76,17 +76,9 @@ const cardVariants = {
 };
 
 export default function Projects() {
-  const [hovered, setHovered] = useState<number | null>(null);
-
   return (
     <div className="w-full">
-      <h2
-        className="text-[32px] tracking-[-0.02em] mb-6"
-        style={{ fontFamily: "'DM Serif Display', serif" }}
-      >
-        Work
-      </h2>
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3.5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-4">
         {projects.map((project, i) => (
           <motion.div
             key={project.id}
@@ -94,47 +86,39 @@ export default function Projects() {
             variants={cardVariants}
             initial="hidden"
             animate="visible"
-            onHoverStart={() => setHovered(project.id)}
-            onHoverEnd={() => setHovered(null)}
-            whileHover={{ y: -7, scale: 1.015 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="relative rounded-[22px] overflow-hidden border border-[#e5e3df] bg-white cursor-pointer"
-            style={{ aspectRatio: '4/3' }}
+            className="group cursor-pointer"
           >
-            {/* Background */}
-            {project.image ? (
-              <div
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${project.image})` }}
-              />
-            ) : (
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient}`} />
-            )}
+            {/* Box container - square aspect ratio, sharp edges */}
+            <div className="relative aspect-square overflow-hidden bg-[#eee]">
+              {/* Background */}
+              {project.image ? (
+                <motion.div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                  style={{ backgroundImage: `url(${project.image})` }}
+                />
+              ) : (
+                <div className={`absolute inset-0 bg-gradient-to-br transition-all duration-500 ${project.gradient}`} />
+              )}
 
-            {/* Emoji center */}
-            {!project.image && (
-              <div className="absolute inset-0 flex items-center justify-center text-[44px]">
-                {project.emoji}
-              </div>
-            )}
+              {!project.image && (
+                <div className="absolute inset-0 flex items-center justify-center text-[44px]">
+                  {project.emoji}
+                </div>
+              )}
 
-            {/* Badge bottom-left */}
-            <div className="absolute bottom-3.5 left-3.5 flex items-center gap-1.5 bg-white/92 backdrop-blur-md rounded-full px-3.5 py-1.5 text-xs font-medium text-[#1a1a1a]">
-              {project.live && <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] flex-shrink-0" />}
-              {project.title}{project.year && <span className="text-[#888]">• {project.year}</span>}
+              {/* Minimal overlay on hover */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
             </div>
 
-            {/* Description bottom-right */}
-            <div className="absolute bottom-3.5 right-3.5 bg-white/82 backdrop-blur-md rounded-[10px] px-2.5 py-1.5 text-[11px] text-[#888] max-w-[140px] leading-snug">
-              {project.subtitle}
+            {/* Label below the box */}
+            <div className="mt-2.5 flex flex-col">
+              <span className="text-[11px] uppercase tracking-wider font-medium text-[#1a1a1a]">
+                {project.title}: {project.subtitle}
+              </span>
+              <span className="text-[10.5px] text-[#888] font-normal uppercase tracking-wider mt-0.5">
+                {project.year || '2024'}
+              </span>
             </div>
-
-            {/* Hover overlay */}
-            <motion.div
-              className="absolute inset-0 bg-black/5"
-              animate={{ opacity: hovered === project.id ? 1 : 0 }}
-              transition={{ duration: 0.2 }}
-            />
           </motion.div>
         ))}
       </div>

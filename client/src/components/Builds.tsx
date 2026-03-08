@@ -20,17 +20,9 @@ const cardVariants = {
 };
 
 export default function Builds() {
-  const [hovered, setHovered] = useState<number | null>(null);
-
   return (
     <div className="w-full">
-      <h2
-        className="text-[32px] tracking-[-0.02em] mb-6"
-        style={{ fontFamily: "'DM Serif Display', serif" }}
-      >
-        Builds
-      </h2>
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3.5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-x-4">
         {builds.map((build, i) => (
           <motion.div
             key={build.id}
@@ -38,29 +30,26 @@ export default function Builds() {
             variants={cardVariants}
             initial="hidden"
             animate="visible"
-            onHoverStart={() => setHovered(build.id)}
-            onHoverEnd={() => setHovered(null)}
-            whileHover={{ y: -7, scale: 1.015 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="relative rounded-[22px] overflow-hidden border border-[#2a2a2a] cursor-pointer"
-            style={{ aspectRatio: '4/3' }}
+            className="group cursor-pointer"
           >
-            <div className={`absolute inset-0 bg-gradient-to-br ${build.gradient}`} />
-            <div className="absolute inset-0 flex items-center justify-center text-[44px]">
-              {build.emoji}
+            {/* Box container - square aspect ratio, sharp edges */}
+            <div className="relative aspect-square overflow-hidden bg-[#1a1a1a]">
+              <div className={`absolute inset-0 bg-gradient-to-br transition-opacity duration-500 opacity-80 group-hover:opacity-100 ${build.gradient}`} />
+              <div className="absolute inset-0 flex items-center justify-center text-[44px]">
+                {build.emoji}
+              </div>
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
             </div>
-            <div className="absolute bottom-3.5 left-3.5 flex items-center gap-1.5 bg-white/12 backdrop-blur-md rounded-full px-3.5 py-1.5 text-xs font-medium text-white">
-              {build.live && <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] flex-shrink-0" />}
-              {build.title}
+
+            {/* Label below the box */}
+            <div className="mt-2.5 flex flex-col">
+              <span className="text-[11px] uppercase tracking-wider font-medium text-[#1a1a1a]">
+                {build.title}
+              </span>
+              <span className="text-[10.5px] text-[#888] font-normal uppercase tracking-wider mt-0.5">
+                {build.subtitle}
+              </span>
             </div>
-            <div className="absolute bottom-3.5 right-3.5 bg-white/10 backdrop-blur-md rounded-[10px] px-2.5 py-1.5 text-[11px] text-white/60 max-w-[140px] leading-snug">
-              {build.subtitle}
-            </div>
-            <motion.div
-              className="absolute inset-0 bg-white/5"
-              animate={{ opacity: hovered === build.id ? 1 : 0 }}
-              transition={{ duration: 0.2 }}
-            />
           </motion.div>
         ))}
       </div>

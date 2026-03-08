@@ -19,31 +19,18 @@ export default function Hero() {
     >
       <motion.h1
         variants={item}
-        className="text-[clamp(54px,8vw,92px)] leading-[0.97] tracking-[-0.03em] mb-7"
-        style={{ fontFamily: "'DM Serif Display', serif" }}
+        className="text-[32px] md:text-[42px] leading-tight tracking-[-0.02em] mb-4 text-[#888]"
       >
-        rayyan<br />
-        <em className="text-[#888] not-italic" style={{ fontStyle: 'italic' }}>maan.</em>
+        rayyan maan.
       </motion.h1>
 
       <motion.p
         variants={item}
-        className="text-[17px] leading-[1.72] text-[#555] max-w-[500px] mb-8 font-light"
+        className="text-[16px] leading-[1.6] text-[#555] max-w-[480px] font-normal"
       >
         Building products at the intersection of design and technology.
         Curious about systems, aesthetics, and the space between ideas and reality.
       </motion.p>
-
-      <motion.div variants={item} className="flex gap-2 flex-wrap">
-        {['Product Design', 'Software Engineering', 'Minerva University', 'Currently building'].map((tag) => (
-          <span
-            key={tag}
-            className="px-[15px] py-[6px] border border-[#e5e3df] rounded-full text-xs text-[#888] bg-white"
-          >
-            {tag}
-          </span>
-        ))}
-      </motion.div>
     </motion.div>
   );
 }
