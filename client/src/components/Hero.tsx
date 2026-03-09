@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const container = {
   hidden: { opacity: 0 },
@@ -10,6 +11,8 @@ const item = {
 };
 
 export default function Hero() {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <motion.div
       variants={container}
@@ -17,19 +20,25 @@ export default function Hero() {
       animate="visible"
       className="max-w-2xl"
     >
-      <motion.h1
+      <motion.div
         variants={item}
-        className="text-[32px] md:text-[42px] leading-tight tracking-[-0.02em] mb-4 text-[#888]"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="mb-4 inline-block cursor-pointer select-none"
       >
-        rayyan maan.
-      </motion.h1>
+        <span
+          className={`text-[32px] md:text-[42px] leading-tight tracking-[-0.02em] transition-colors duration-300 ${isHovered ? 'text-black font-["Courier_New"]' : 'text-[#888]'}`}
+        >
+          {isHovered ? 'ریّان مان' : 'rayyan maan'}
+        </span>
+      </motion.div>
 
       <motion.p
         variants={item}
         className="text-[16px] leading-[1.6] text-[#555] max-w-[480px] font-normal"
       >
-        Building products at the intersection of design and technology.
-        Curious about systems, aesthetics, and the space between ideas and reality.
+        Building products at the intersection of design & technology.<br />
+        Curious about systems, aesthetics, & the space between ideas & reality.
       </motion.p>
     </motion.div>
   );
