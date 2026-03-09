@@ -22,7 +22,7 @@ export default function Footer({ logoSrc, setActiveSection }: FooterProps) {
 
         {/* Right - Contact / Socials */}
         <div className="flex items-center gap-6">
-          <span className="hidden md:inline text-[12px] text-[#888] font-normal tracking-tight uppercase">let's work together</span>
+          <span className="hidden md:inline text-[12px] text-[#888] font-normal tracking-tight lowercase">let's work together!</span>
 
           <div className="flex items-center gap-5">
             <a

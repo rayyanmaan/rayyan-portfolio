@@ -31,14 +31,14 @@
 
 @layer base {
   :root {
-    --background: #fafafa;
+    --background: #ffffff;
     --foreground: #1a1a1a;
     --card: #ffffff;
     --card-foreground: #1a1a1a;
     --popover: #ffffff;
     --popover-foreground: #1a1a1a;
     --primary: #1a1a1a;
-    --primary-foreground: #f8f7f4;
+    --primary-foreground: #ffffff;
     --secondary: #f1f0ed;
     --secondary-foreground: #1a1a1a;
     --muted: #f1f0ed;
@@ -51,6 +51,26 @@
     --input: #e5e3df;
     --ring: #1a1a1a;
     --radius: 0px;
+  }
+
+  .dark {
+    --background: #1a1a1a;
+    --foreground: #ffffff;
+    --card: #1a1a1a;
+    --card-foreground: #ffffff;
+    --popover: #1a1a1a;
+    --popover-foreground: #ffffff;
+    --primary: #ffffff;
+    --primary-foreground: #1a1a1a;
+    --secondary: #242424;
+    --secondary-foreground: #ffffff;
+    --muted: #242424;
+    --muted-foreground: #a1a1aa;
+    --accent: #242424;
+    --accent-foreground: #ffffff;
+    --border: #333333;
+    --input: #333333;
+    --ring: #ffffff;
   }
 
   * {
@@ -68,6 +88,7 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

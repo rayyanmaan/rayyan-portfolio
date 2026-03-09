@@ -18,6 +18,9 @@ const pageVariants = {
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('me');
+  const [isDark, setIsDark] = useState(false);
+
+  const toggleTheme = () => setIsDark(!isDark);
 
   const renderPage = () => {
     switch (activeSection) {
@@ -31,38 +34,44 @@ export default function Home() {
   };
 
   return (
-    <div
-      className="min-h-screen text-[#1a1a1a] overflow-hidden bg-[#f8f7f4]"
-    >
-      {/* Logo — top left */}
-      <Logo onClick={() => setActiveSection('me')} src={LOGO_SRC} />
-
-      {/* Navigation */}
-      <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
-
-      {/* Page content */}
-      <main
-        className="fixed inset-0 overflow-y-auto"
-        style={{ paddingTop: 80, paddingBottom: 80 }}
+    <div className={isDark ? 'dark' : ''}>
+      <div
+        className="min-h-screen text-foreground overflow-hidden bg-background transition-colors duration-500"
       >
-        <div className="min-h-full px-8 md:px-12 py-10 w-full">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeSection}
-              variants={pageVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              className="w-full"
-            >
-              {renderPage()}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </main>
+        {/* Logo — top left */}
+        <Logo
+          onClick={toggleTheme}
+          src={LOGO_SRC}
+          isDark={isDark}
+        />
 
-      {/* Footer */}
-      <Footer logoSrc={LOGO_SRC} setActiveSection={setActiveSection} />
+        {/* Navigation */}
+        <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
+
+        {/* Page content */}
+        <main
+          className="fixed inset-0 overflow-y-auto"
+          style={{ paddingTop: 80, paddingBottom: 80 }}
+        >
+          <div className="min-h-full px-8 md:px-12 py-10 w-full">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeSection}
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                className="w-full"
+              >
+                {renderPage()}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </main>
+
+        {/* Footer */}
+        <Footer logoSrc={LOGO_SRC} setActiveSection={setActiveSection} />
+      </div>
     </div>
   );
 }

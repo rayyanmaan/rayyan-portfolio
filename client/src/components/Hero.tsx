@@ -24,18 +24,39 @@ export default function Hero() {
         variants={item}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="mb-4 inline-block cursor-pointer select-none"
+        className="mb-6 inline-block cursor-pointer select-none group"
       >
-        <span
-          className={`text-[32px] md:text-[42px] leading-tight tracking-[-0.02em] transition-colors duration-300 ${isHovered ? 'text-black font-["Courier_New"]' : 'text-[#888]'}`}
-        >
-          {isHovered ? 'ریّان مان' : 'rayyan maan'}
-        </span>
+        <div className="relative overflow-hidden h-[42px] md:h-[52px]">
+          <AnimatePresence mode="wait">
+            {!isHovered ? (
+              <motion.span
+                key="english"
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 100, opacity: 0 }}
+                className="text-[32px] md:text-[42px] leading-tight tracking-[-0.02em] text-foreground font-medium block"
+              >
+                rayyan maan
+              </motion.span>
+            ) : (
+              <motion.span
+                key="urdu"
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: 20, opacity: 0 }}
+                className='text-[32px] md:text-[42px] leading-tight tracking-[-0.02em] text-[#888] font-["Courier_New"] block'
+                dir="rtl"
+              >
+                ریّان مان
+              </motion.span>
+            )}
+          </AnimatePresence>
+        </div>
       </motion.div>
 
       <motion.p
         variants={item}
-        className="text-[16px] leading-[1.6] text-[#555] max-w-[480px] font-normal"
+        className={`text-[16px] leading-[1.6] max-w-[480px] font-normal transition-colors duration-500 ${isHovered ? 'text-foreground' : 'text-[#888]'}`}
       >
         Building products at the intersection of design & technology.<br />
         Curious about systems, aesthetics, & the space between ideas & reality.
