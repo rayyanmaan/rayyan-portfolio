@@ -1,103 +1,83 @@
 # Rayyan Portfolio
 
-Personal portfolio web app built with React, TypeScript, and Vite.
+[![React](https://img.shields.io/badge/React-19-149eca?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7-646cff?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Netlify Ready](https://img.shields.io/badge/Netlify-Ready-00ad9f?style=for-the-badge&logo=netlify&logoColor=white)](https://www.netlify.com/)
+![License: MIT](https://img.shields.io/badge/License-MIT-111111?style=for-the-badge)
 
-## Tech Stack
+Personal portfolio web app built with a modern React stack, animated interactions, and route-based city/project storytelling.
 
-- React 19 + TypeScript
-- Vite 7
-- Framer Motion
-- Wouter routing
-- Tailwind CSS v4
-- Express (production server wrapper)
+## At a Glance
 
-## Project Structure
+- Frontend: React 19, TypeScript, Vite 7, Framer Motion, Wouter, Tailwind CSS v4
+- Runtime: Express wrapper for production serving
+- Deployment: Netlify static deploy supported out of the box
+- Key routes: `/`, `/city/:id`, `/project/:slug`
 
-```
-client/               # Frontend app (Vite root)
-	src/
-		components/       # Portfolio sections and UI pieces
-		pages/            # Route pages (Home, CityPage, ProjectPage)
-		contexts/         # Theme context
-	public/             # Static assets
-server/               # Express production server entry
-scripts/              # Utility scripts
-docs/                 # Design and planning docs
-```
-
-## Local Development
+## Quick Start
 
 Requirements:
 
 - Node.js 20+
 - npm
 
-Install dependencies:
-
 ```bash
 npm install
-```
-
-Start development server:
-
-```bash
 npm run dev
 ```
 
-Type-check:
+Useful commands:
 
 ```bash
-npm run check
+npm run check   # TypeScript check
+npm run build   # Production build
+npm run start   # Serve production build
 ```
 
-Build production bundle:
+## Project Layout
 
-```bash
-npm run build
+```text
+client/                 Frontend app (Vite root)
+  src/components/       Portfolio sections and UI components
+  src/pages/            Route pages (Home, CityPage, ProjectPage)
+  src/contexts/         Theme and global UI context
+  public/               Static assets
+server/                 Express production server entry
+scripts/                Utility scripts
+docs/                   Design and planning docs
 ```
 
-Run production server locally:
+## Deployment (Netlify)
 
-```bash
-npm run start
-```
-
-## Routing
-
-Client-side routes use Wouter and are expected to be served by index fallback in static hosting:
-
-- `/`
-- `/city/:id`
-- `/project/:slug`
-
-## Netlify Static Deploy
-
-This repository includes:
+This repo already includes:
 
 - `netlify.toml`
 - `client/public/_redirects`
 
-Use:
+Build settings:
 
 - Build command: `npm run build`
 - Publish directory: `dist/public`
 
-The redirect fallback is required so direct refreshes on dynamic routes work correctly.
+> Important: The SPA fallback redirect is required for direct refreshes on `/city/:id` and `/project/:slug`.
 
 ## Environment Variables
 
-See `.env.example` for available variables.
+See `.env.example` for defaults.
 
-Current optional variables used by the frontend include analytics values:
+Optional frontend analytics variables:
 
-- `VITE_ANALYTICS_ENDPOINT`
-- `VITE_ANALYTICS_WEBSITE_ID`
+| Variable | Purpose |
+| --- | --- |
+| `VITE_ANALYTICS_ENDPOINT` | Analytics script host |
+| `VITE_ANALYTICS_WEBSITE_ID` | Site ID for analytics tracking |
 
-## Security and Hygiene
+## Security Notes
 
-- `.env` files are gitignored.
-- Local artifacts and scratch files are excluded via `.gitignore`.
-- Production dependency vulnerabilities are checked with `npm audit --omit=dev`.
+- `.env` and local machine artifacts are ignored via `.gitignore`
+- Dependency audits can be run with `npm audit` or `npm audit --omit=dev`
+- No hardcoded runtime secrets are required for local development
 
 ## License
 
