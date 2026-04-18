@@ -107,3 +107,68 @@ temp/
 
 # Webdev artifacts (checkpoint zips, migrations, etc.)
 .webdev/
+
+# Manus artifacts
+.manus-logs/
+client/public/__manus__/
+
+# VS Code workspace (contains local paths)
+*.code-workspace
+
+# Playwright browser cache
+.playwright/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Claude agent state (not project config)
+.claude/todos/
+.claude/
+/CLAUDE.md
+
+# Local Python environments
+.venv/
+venv/
+
+# Local automation and test artifacts
+.playwright-mcp/
+.playwright-cli/
+test-results/
+
+# Local archives
+*.zip
+
+# Temporary local design/reference folders
+for builds/
+for contact page/
+for works: experiences/
+tech stack/
+
+# Root-level scratch scripts and visual QA captures
+/analyze.py
+/analyze2.py
+/crop_jersey.py
+/dumper.py
+/fix_jersey_bbox.py
+/fix_rembg_argentina.py
+/fix_sf.py
+/fix_taipei.py
+/fix_taipei2.py
+/fix_taipei3.py
+/make_transparent.py
+/patch_globe.py
+/process_all_bg.py
+/test_jersey.py
+/test_sf.py
+/builds-3d-carousel.png
+/builds-updated.png
+/city-sf.png
+/hero-updated.png
+/project-swapcircle.png
+/qa-dark-mode-stickers.png
+/qa-dark-mode-v2.png
+/qa-dark-scrolled.png
+/qa-hover-buenos-aires.png
+/qa-light-top.png
+/qa-scrolled-lower.png

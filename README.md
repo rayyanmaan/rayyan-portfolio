@@ -1,28 +1,104 @@
-# Portfolio Update — Files to Replace
+# Rayyan Portfolio
 
-Drop these files into your existing `rayyan-portfolio` repo. They replace the ones that existed before.
+Personal portfolio web app built with React, TypeScript, and Vite.
 
-## Files Changed
+## Tech Stack
 
-### client/src/ (root)
-- `index.css` — adds DM Sans + DM Serif Display fonts, cleans up base styles
-- `logoData.ts` — NEW: embedded base64 logo image (your seal stamp)
+- React 19 + TypeScript
+- Vite 7
+- Framer Motion
+- Wouter routing
+- Tailwind CSS v4
+- Express (production server wrapper)
 
-### client/src/components/
-- `Navigation.tsx` — replaced sidebar with centered pill nav (Me! / Work / Builds / Stack / Contact)
-- `Logo.tsx` — NEW: fixed top-left logo with springy wiggle hover animation
-- `Hero.tsx` — "Me!" page with serif name + bio + tags
-- `Projects.tsx` — Work page: 3-col Pinterest-style rounded cards
-- `Builds.tsx` — NEW: Builds page with dark-themed cards
-- `Stack.tsx` — NEW: Stack page with tool tiles by category
-- `Contact.tsx` — updated with correct email and socials
-- `Footer.tsx` — NEW: footer matching Michelle Liu layout (logo + name | nav links | cta + email + icons)
+## Project Structure
 
-### client/src/pages/
-- `Home.tsx` — rewired: no sidebar, page-based navigation with AnimatePresence transitions
+```
+client/               # Frontend app (Vite root)
+	src/
+		components/       # Portfolio sections and UI pieces
+		pages/            # Route pages (Home, CityPage, ProjectPage)
+		contexts/         # Theme context
+	public/             # Static assets
+server/               # Express production server entry
+scripts/              # Utility scripts
+docs/                 # Design and planning docs
+```
 
-## Notes
-- `About.tsx`, `Map.tsx`, `ErrorBoundary.tsx`, `ManusDialog.tsx` are unchanged — keep them
-- `App.tsx`, `main.tsx`, `const.ts` unchanged — keep them
-- The logo is embedded in `logoData.ts` so no external asset needed
-- If `framer-motion` isn't installed: `npm install framer-motion`
+## Local Development
+
+Requirements:
+
+- Node.js 20+
+- npm
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start development server:
+
+```bash
+npm run dev
+```
+
+Type-check:
+
+```bash
+npm run check
+```
+
+Build production bundle:
+
+```bash
+npm run build
+```
+
+Run production server locally:
+
+```bash
+npm run start
+```
+
+## Routing
+
+Client-side routes use Wouter and are expected to be served by index fallback in static hosting:
+
+- `/`
+- `/city/:id`
+- `/project/:slug`
+
+## Netlify Static Deploy
+
+This repository includes:
+
+- `netlify.toml`
+- `client/public/_redirects`
+
+Use:
+
+- Build command: `npm run build`
+- Publish directory: `dist/public`
+
+The redirect fallback is required so direct refreshes on dynamic routes work correctly.
+
+## Environment Variables
+
+See `.env.example` for available variables.
+
+Current optional variables used by the frontend include analytics values:
+
+- `VITE_ANALYTICS_ENDPOINT`
+- `VITE_ANALYTICS_WEBSITE_ID`
+
+## Security and Hygiene
+
+- `.env` files are gitignored.
+- Local artifacts and scratch files are excluded via `.gitignore`.
+- Production dependency vulnerabilities are checked with `npm audit --omit=dev`.
+
+## License
+
+MIT
